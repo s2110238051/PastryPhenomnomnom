@@ -17,8 +17,13 @@ public class SmashEgg : MonoBehaviour
         if (collision.gameObject.CompareTag("bowl"))
         {
             Debug.Log("egg touch");
-            Destroy(this, 1);
-            Instantiate(SpawnEgg, this.transform);
+            //Destroy(this.gameObject, 1);
+            //Instantiate(SpawnEgg, this.transform.position, this.transform.rotation);
+
+            //this.gameObject.SetActive(false);
+            SpawnEgg.transform.position = this.gameObject.transform.position;
+            SpawnEgg.transform.rotation = this.gameObject.transform.rotation;
+            SpawnEgg.SetActive(true);
 
         }
     }

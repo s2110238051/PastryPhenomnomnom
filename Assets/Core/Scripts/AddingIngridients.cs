@@ -8,7 +8,7 @@ using static UnityEngine.Rendering.DebugUI.Table;
 
 public class AddingIngridients : MonoBehaviour
 {
-    public Collider Flour;
+    //public Collider Flour;
     public ParticleSystem particleSystem;
 
     // ingredient tag, [soll wert, ist wert]
@@ -19,15 +19,16 @@ public class AddingIngridients : MonoBehaviour
         { "milk", new int[] {1,0 } },
     };
 
+
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log("collision with on trigger" + other.name);
-        if(Ingridients.ContainsKey(other.gameObject.tag))
+        if (Ingridients.ContainsKey(other.gameObject.tag))
         {
             Debug.Log("this ingredient has entered the chat: " + other.gameObject.tag);
             Ingridients[other.gameObject.tag][1]++;
 
-            if(Ingridients[other.gameObject.tag][1]<= Ingridients[other.gameObject.tag][0])
+            if (Ingridients[other.gameObject.tag][1] <= Ingridients[other.gameObject.tag][0])
             {
                 particleSystem.Play();
             }
