@@ -5,7 +5,8 @@ using static UnityEngine.GraphicsBuffer;
 
 public class SmashEgg : MonoBehaviour
 {
-    public GameObject SpawnEgg;
+    //public GameObject SpawnEgg;
+    public Transform myChildObject;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,10 +21,12 @@ public class SmashEgg : MonoBehaviour
             //Destroy(this.gameObject, 1);
             //Instantiate(SpawnEgg, this.transform.position, this.transform.rotation);
 
-            //this.gameObject.SetActive(false);
-            SpawnEgg.transform.position = this.gameObject.transform.position;
-            SpawnEgg.transform.rotation = this.gameObject.transform.rotation;
-            SpawnEgg.SetActive(true);
+            myChildObject.parent = null;
+            Rigidbody gameObjectsRigidBody = myChildObject.gameObject.AddComponent<Rigidbody>(); // Add the rigidbody.
+            this.gameObject.SetActive(false);
+            //SpawnEgg.transform.position = this.gameObject.transform.position;
+            //SpawnEgg.transform.rotation = this.gameObject.transform.rotation;
+            //SpawnEgg.SetActive(true);
 
         }
     }
