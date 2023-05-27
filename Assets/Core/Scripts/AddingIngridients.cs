@@ -35,7 +35,11 @@ public class AddingIngridients : MonoBehaviour
             else
             {
                 Debug.Log("womp womp womp");
+                other.gameObject.GetComponent<Renderer>().material.color = Color.red;
             }
+
+            Destroy(other.gameObject,2);
+            //add dough obj
         }
         //particleSystem.SetActive(true);
     }
