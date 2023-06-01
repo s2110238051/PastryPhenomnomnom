@@ -8,35 +8,28 @@ public class SmashEgg : MonoBehaviour
     //public GameObject SpawnEgg;
     public Transform myChildObject;
     private bool notDone = true;
+    private AudioSource audioSauce;
+    public AudioClip audioEgg;
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSauce = GetComponent<AudioSource>();
+        //audioSauce.Play();
+        //audioSauce.clip = audioEgg;
+        //audioSauce.Play();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("bowl") && notDone)
         {
+            audioSauce.Play();
             notDone = false;
-            Debug.Log("egg touch");
-            //Destroy(this.gameObject, 1);
-            //Instantiate(SpawnEgg, this.transform.position, this.transform.rotation);
-            AudioSource audioData = GetComponent<AudioSource>();
-            audioData.Play(0);
-
+            Debug.Log("egg touch");           
             myChildObject.parent = null;
             this.gameObject.SetActive(false);
             Rigidbody gameObjectsRigidBody = myChildObject.gameObject.AddComponent<Rigidbody>(); // Add the rigidbody.
-            myChildObject.gameObject.tag="eggs";
-            //BoxCollider boxCollider = myChildObject.gameObject.AddComponent<BoxCollider>();
-            
-
-
-            //SpawnEgg.transform.position = this.gameObject.transform.position;
-            //SpawnEgg.transform.rotation = this.gameObject.transform.rotation;
-            //SpawnEgg.SetActive(true);
-
+            myChildObject.gameObject.tag="eggs";     
         }
     }
 
