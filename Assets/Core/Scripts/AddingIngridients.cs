@@ -10,6 +10,8 @@ public class AddingIngridients : MonoBehaviour
 {
     //public Collider Flour;
     public ParticleSystem particleSystem;
+    public GameObject dough;
+    private int counter = 0;
 
     // ingredient tag, [soll wert, ist wert]
     private Dictionary<string, int[]> Ingridients = new Dictionary<string, int[]>() {
@@ -35,9 +37,32 @@ public class AddingIngridients : MonoBehaviour
             else
             {
                 Debug.Log("womp womp womp");
+                other.gameObject.GetComponent<Renderer>().material.color = Color.red;
             }
+
+            Destroy(other.gameObject, 2);
+            AddDough();
         }
         //particleSystem.SetActive(true);
+    }
+
+    private void AddDough()
+    {
+        if (!dough.activeSelf)
+        {
+            dough.SetActive(true);
+        }
+        else
+        {
+            if (counter > 3)
+            {
+                dough.transform.localScale += new Vector3(0, 0, 0.1f);
+            }
+
+            dough.transform.localPosition += new Vector3(0, 0.1f, 0);
+
+        }
+        counter++;
     }
 
     public bool ValidatePatter()

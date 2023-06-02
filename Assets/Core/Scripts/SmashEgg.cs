@@ -5,28 +5,35 @@ using static UnityEngine.GraphicsBuffer;
 
 public class SmashEgg : MonoBehaviour
 {
-    public GameObject SpawnEgg;
+    //public GameObject SpawnEgg;
+    public Transform myChildObject;
+    private bool notDone = true;
+    private AudioSource audioSauce;
+    public AudioClip audioEgg;
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSauce = GetComponent<AudioSource>();
+        //audioSauce.Play();
+        //audioSauce.clip = audioEgg;
+        //audioSauce.Play();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("bowl"))
+
+        if (collision.gameObject.CompareTag("bowl") && notDone)
         {
+
+            notDone = false;
             Debug.Log("egg touch");
-            //Destroy(this.gameObject, 1);
-            //Instantiate(SpawnEgg, this.transform.position, this.transform.rotation);
-
-            //this.gameObject.SetActive(false);
-            SpawnEgg.transform.position = this.gameObject.transform.position;
-            SpawnEgg.transform.rotation = this.gameObject.transform.rotation;
-            SpawnEgg.SetActive(true);
-
+            myChildObject.parent = null;
+            this.gameObject.SetActive(false);
+            Rigidbody gameObjectsRigidBody = myChildObject.gameObject.AddComponent<Rigidbody>(); // Add the rigidbody.
+            myChildObject.gameObject.tag = "eggs";
+            audioSauce.Play();
         }
     }
 
-    
+
 }
