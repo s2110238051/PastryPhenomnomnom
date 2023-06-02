@@ -21,15 +21,17 @@ public class SmashEgg : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+
         if (collision.gameObject.CompareTag("bowl") && notDone)
         {
-            audioSauce.Play();
+            
             notDone = false;
             Debug.Log("egg touch");           
             myChildObject.parent = null;
             this.gameObject.SetActive(false);
             Rigidbody gameObjectsRigidBody = myChildObject.gameObject.AddComponent<Rigidbody>(); // Add the rigidbody.
-            myChildObject.gameObject.tag="eggs";     
+            myChildObject.gameObject.tag="eggs";
+            audioSauce.Play();
         }
     }
 
