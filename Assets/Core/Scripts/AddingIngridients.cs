@@ -59,7 +59,7 @@ public class AddingIngridients : MonoBehaviour
                 dough.transform.localScale += new Vector3(0, 0, 0.1f);
             }
 
-            dough.transform.localPosition += new Vector3(0, 0.1f, 0);
+            dough.transform.localPosition += new Vector3(0, 0.2f, 0);
 
         }
         counter++;

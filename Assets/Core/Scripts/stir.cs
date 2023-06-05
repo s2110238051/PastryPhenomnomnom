@@ -21,33 +21,33 @@ public class stir : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        Rigidbody rb = GetComponent<Rigidbody>();
-        Vector3 v3Velocity = rb.velocity;
+    //void Update()
+    //{
+    //    Rigidbody rb = GetComponent<Rigidbody>();
+    //    Vector3 v3Velocity = rb.velocity;
 
         
-        if (v3Velocity.magnitude > 0)
-        {
-            Debug.Log(v3Velocity.magnitude);
-            Debug.Log("go brr");
-        }
+    //    if (v3Velocity.magnitude > 0)
+    //    {
+    //        Debug.Log(v3Velocity.magnitude);
+    //        Debug.Log("go brr");
+    //    }
 
-        Vector3 controllerPosition = this.transform.position;
+    //    Vector3 controllerPosition = this.transform.position;
         
 
-        currentDir = Vector3.ProjectOnPlane(rotationPoint.position - controllerPosition, rotationAxis);
+    //    currentDir = Vector3.ProjectOnPlane(rotationPoint.position - controllerPosition, rotationAxis);
 
-        float curAngle = Vector3.Angle(lastDir, currentDir);
-        Vector3 crossProd = Vector3.Cross(lastDir, currentDir);
+    //    float curAngle = Vector3.Angle(lastDir, currentDir);
+    //    Vector3 crossProd = Vector3.Cross(lastDir, currentDir);
 
-        float d = Vector3.Dot(crossProd, rotationAxis);
+    //    float d = Vector3.Dot(crossProd, rotationAxis);
 
-        rotationTotal += Mathf.Sign(d) * curAngle;
+    //    rotationTotal += Mathf.Sign(d) * curAngle;
 
-        lastDir = currentDir;
-        Debug.Log(rotationTotal);
+    //    lastDir = currentDir;
+    //    Debug.Log(rotationTotal);
 
-        Debug.DrawRay(rotationPoint.position, Vector3.up * (rotationTotal / 360f));
-    }
+    //    Debug.DrawRay(rotationPoint.position, Vector3.up * (rotationTotal / 360f));
+    //}
 }

@@ -50,6 +50,7 @@ GameObject:
   - component: {fileID: 5966263851443556002}
   - component: {fileID: 8232282698342036031}
   - component: {fileID: 7543434780998132795}
+  - component: {fileID: 6073808507618055472}
   m_Layer: 8
   m_Name: Low Poly Egg
   m_TagString: eggs
@@ -336,6 +337,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myChildObject: {fileID: 8189238825256269792}
   audioEgg: {fileID: 8300000, guid: e02e5e5972929864e9ceb5ade80c74ac, type: 3}
+--- !u!114 &6073808507618055472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6777078018100608955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.57254905, b: 0.8745098, a: 1}
+  outlineWidth: 3
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &8189238824901786500
 GameObject:
   m_ObjectHideFlags: 0
