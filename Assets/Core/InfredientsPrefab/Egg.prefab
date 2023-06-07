@@ -53,7 +53,7 @@ GameObject:
   - component: {fileID: 6073808507618055472}
   m_Layer: 8
   m_Name: Low Poly Egg
-  m_TagString: eggs
+  m_TagString: eggSound
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

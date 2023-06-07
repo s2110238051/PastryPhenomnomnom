@@ -12,6 +12,7 @@ public class AddingIngridients : MonoBehaviour
     public ParticleSystem particleSystem;
     public GameObject dough;
     private int counter = 0;
+    private AudioSource audioSauce;
 
     // ingredient tag, [soll wert, ist wert]
     private Dictionary<string, int[]> Ingridients = new Dictionary<string, int[]>() {
@@ -21,6 +22,10 @@ public class AddingIngridients : MonoBehaviour
         { "milk", new int[] {1,0 } },
     };
 
+    private void Start()
+    {
+        audioSauce = GetComponent<AudioSource>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -37,6 +42,7 @@ public class AddingIngridients : MonoBehaviour
             else
             {
                 Debug.Log("womp womp womp");
+                audioSauce.Play();
                 other.gameObject.GetComponent<Renderer>().material.color = Color.red;
             }
 
@@ -54,7 +60,7 @@ public class AddingIngridients : MonoBehaviour
         }
         else
         {
-            if (counter > 3)
+            if (counter > 5)
             {
                 dough.transform.localScale += new Vector3(0, 0, 0.1f);
             }

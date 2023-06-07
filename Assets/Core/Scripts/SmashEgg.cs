@@ -32,6 +32,8 @@ public class SmashEgg : MonoBehaviour
             Rigidbody gameObjectsRigidBody = myChildObject.gameObject.AddComponent<Rigidbody>(); // Add the rigidbody.
             myChildObject.gameObject.tag = "eggs";
             audioSauce.Play();
+
+            Destroy(myChildObject.gameObject, 3);
         }
     }
 
