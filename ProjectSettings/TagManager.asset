@@ -10,6 +10,10 @@ TagManager:
   - flour
   - bowl
   - sugar
+  - eggSound
+  - milk
+  - stirColllider1
+  - stir
   layers:
   - Default
   - TransparentFX
@@ -20,7 +24,7 @@ TagManager:
   - Player
   - Interactable
   - smashEgg
-  - 
+  - stirrDough
   - 
   - 
   - 

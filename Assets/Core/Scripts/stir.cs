@@ -1,53 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static MouseLook;
 
-public class stir : MonoBehaviour
+public class Stir : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public Transform rotationPoint;
-    public Vector3 rotationAxis = new Vector3(0, 1, 0);
-    private Vector3 currentDir;
-    private Vector3 lastDir = new Vector3(0,0,0);
+    public GameObject first;
 
-    private float rotationTotal;
+    private Color[] colors =
+    {
+        new Color(255,0,0),
+        new Color(0,255,0),
+        new Color(0,0,255)
+    };
+    private int[] progress = new int[4];
+    private int counter = 1;
+    
 
     void Start()
     {
         
     }
 
-    // Update is called once per frame
-    //void Update()
-    //{
-    //    Rigidbody rb = GetComponent<Rigidbody>();
-    //    Vector3 v3Velocity = rb.velocity;
+    private void OnTriggerEnter(Collider collision)
+    {
+        //Debug.Log("Stirred: " + collision.gameObject.name);
 
-        
-    //    if (v3Velocity.magnitude > 0)
-    //    {
-    //        Debug.Log(v3Velocity.magnitude);
-    //        Debug.Log("go brr");
-    //    }
-
-    //    Vector3 controllerPosition = this.transform.position;
-        
-
-    //    currentDir = Vector3.ProjectOnPlane(rotationPoint.position - controllerPosition, rotationAxis);
-
-    //    float curAngle = Vector3.Angle(lastDir, currentDir);
-    //    Vector3 crossProd = Vector3.Cross(lastDir, currentDir);
-
-    //    float d = Vector3.Dot(crossProd, rotationAxis);
-
-    //    rotationTotal += Mathf.Sign(d) * curAngle;
-
-    //    lastDir = currentDir;
-    //    Debug.Log(rotationTotal);
-
-    //    Debug.DrawRay(rotationPoint.position, Vector3.up * (rotationTotal / 360f));
-    //}
+        if (collision.gameObject == first)
+        {       
+            Debug.Log("Stirred: "+ collision.gameObject.name);
+            collision.gameObject.GetComponent<Renderer>().material.color = Color.red;
+        }
+    }
 }
