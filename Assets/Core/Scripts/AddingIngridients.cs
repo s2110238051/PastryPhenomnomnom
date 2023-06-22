@@ -11,7 +11,7 @@ public class AddingIngridients : MonoBehaviour
     //public Collider Flour;
     public ParticleSystem particleSystem;
     public GameObject dough;
-    private int counter = 0;
+    public int counter = 0;
     private AudioSource audioSauce;
 
     // ingredient tag, [soll wert, ist wert]
@@ -46,7 +46,7 @@ public class AddingIngridients : MonoBehaviour
                 other.gameObject.GetComponent<Renderer>().material.color = Color.red;
             }
 
-            Destroy(other.gameObject, 2);
+            Destroy(other.gameObject, 1);
             AddDough();
         }
         //particleSystem.SetActive(true);
@@ -60,13 +60,13 @@ public class AddingIngridients : MonoBehaviour
         }
         else
         {
-            if (counter > 5)
+            if (counter < 3)
             {
-                dough.transform.localScale += new Vector3(0, 0, 0.1f);
+                dough.transform.localScale += new Vector3(0, 0, 0.2f);
             }
 
-            dough.transform.localPosition += new Vector3(0, 0.2f, 0);
-
+                dough.transform.localPosition += new Vector3(0, 0.1f, 0);
+            
         }
         counter++;
     }

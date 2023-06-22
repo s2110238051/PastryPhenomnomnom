@@ -33,7 +33,7 @@ public class SmashEgg : MonoBehaviour
             myChildObject.gameObject.tag = "eggs";
             audioSauce.Play();
 
-            Destroy(myChildObject.gameObject, 3);
+            Destroy(myChildObject.gameObject, 1);
         }
     }
 

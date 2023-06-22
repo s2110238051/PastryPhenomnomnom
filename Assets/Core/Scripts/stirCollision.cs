@@ -6,7 +6,7 @@ using static UnityEngine.ParticleSystem;
 
 public class stirCollision : MonoBehaviour
 {
-    public Collider BigSpoon;
+    public Collider Spoon;
 
 
     private Color[] colors =
@@ -18,6 +18,10 @@ public class stirCollision : MonoBehaviour
     private static int next = 1;
     private int counter = 0;
 
+    public GameObject IngredientsCounter;
+    public GameObject Recipie;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,8 +30,9 @@ public class stirCollision : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
         //Debug.Log("collision with on trigger" + other.name);
-        if (other.gameObject == BigSpoon.gameObject && int.Parse(this.name)==next && counter<2)
+        if (other.gameObject == Spoon.gameObject && int.Parse(this.name)==next && counter<2)
         {
             Debug.Log(this.name + " collided with " + other.gameObject.name);
             this.gameObject.GetComponent<Outline>().OutlineColor = colors[counter];
@@ -35,5 +40,12 @@ public class stirCollision : MonoBehaviour
             counter++;
             next = (next==4) ? 1 : next+1;
         }
+    }
+
+    private void ResetCounters()
+    {
+
+        next = 1;
+        counter = 0;
     }
 }
