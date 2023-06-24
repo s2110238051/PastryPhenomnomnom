@@ -6,6 +6,7 @@ using static UnityEngine.GraphicsBuffer;
 public class SmashEgg : MonoBehaviour
 {
     //public GameObject SpawnEgg;
+    public bool cracked;
     public Transform myChildObject;
     private bool notDone = true;
     private AudioSource audioSauce;
@@ -19,23 +20,33 @@ public class SmashEgg : MonoBehaviour
         //audioSauce.Play();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    //private void OnCollisionEnter(Collision collision)
+    //{
+
+    //    if (collision.gameObject.CompareTag("bowl") && notDone)
+    //    {
+
+    //        notDone = false;
+    //        Debug.Log("egg touch");
+    //        myChildObject.parent = null;
+    //        this.gameObject.SetActive(false);
+    //        Rigidbody gameObjectsRigidBody = myChildObject.gameObject.AddComponent<Rigidbody>(); // Add the rigidbody.
+    //        myChildObject.gameObject.tag = "eggs";
+    //        audioSauce.Play();
+
+    //        Destroy(myChildObject.gameObject, 1);
+    //    }
+    //}
+
+    public void DeleteShell()
     {
+        Debug.Log("egg touch vol 2");
+        myChildObject.parent = null;
+        this.gameObject.SetActive(false);
+        Rigidbody gameObjectsRigidBody = myChildObject.gameObject.AddComponent<Rigidbody>(); // Add the rigidbody.
+        myChildObject.gameObject.tag = "eggs";
+        audioSauce.Play();
 
-        if (collision.gameObject.CompareTag("bowl") && notDone)
-        {
-
-            notDone = false;
-            Debug.Log("egg touch");
-            myChildObject.parent = null;
-            this.gameObject.SetActive(false);
-            Rigidbody gameObjectsRigidBody = myChildObject.gameObject.AddComponent<Rigidbody>(); // Add the rigidbody.
-            myChildObject.gameObject.tag = "eggs";
-            audioSauce.Play();
-
-            Destroy(myChildObject.gameObject, 1);
-        }
+        Destroy(myChildObject.gameObject, 1);
     }
-
-
 }

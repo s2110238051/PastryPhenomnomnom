@@ -51,6 +51,7 @@ GameObject:
   - component: {fileID: 8232282698342036031}
   - component: {fileID: 7543434780998132795}
   - component: {fileID: 6073808507618055472}
+  - component: {fileID: 4581960888295471890}
   m_Layer: 8
   m_Name: Low Poly Egg
   m_TagString: eggSound
@@ -335,6 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91c6bfa27cc66c94bb435d661ffcc045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cracked: 0
   myChildObject: {fileID: 8189238825256269792}
   audioEgg: {fileID: 8300000, guid: e02e5e5972929864e9ceb5ade80c74ac, type: 3}
 --- !u!114 &6073808507618055472
@@ -355,6 +357,69 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &4581960888295471890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6777078018100608955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1464721f2283eb14e94a33e812b47be4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactableView: {fileID: 5966263851443556012}
+  _whenHover:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenUnhover:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2949519764071751544, guid: 8fb354a1db0e6fa40b4dac23196b7e45,
+          type: 3}
+        m_TargetAssemblyTypeName: bowlAudio, Assembly-CSharp
+        m_MethodName: OnEggSelect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _whenUnselect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2949519764071751544, guid: 8fb354a1db0e6fa40b4dac23196b7e45,
+          type: 3}
+        m_TargetAssemblyTypeName: bowlAudio, Assembly-CSharp
+        m_MethodName: OnEggUnselect
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 7543434780998132795}
+          m_ObjectArgumentAssemblyTypeName: SmashEgg, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _whenInteractorViewAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenInteractorViewRemoved:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelectingInteractorViewAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelectingInteractorViewRemoved:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8189238824901786500
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,5 @@
+using Oculus.Interaction;
+using Oculus.Interaction.HandGrab;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -11,35 +13,49 @@ public class stirCollision : MonoBehaviour
 
     private Color[] colors =
     {
-        new Color(255,0,0),
-        new Color(0,255,0),
-        new Color(0,0,255)
+        Color.yellow,
+        Color.blue,
+        Color.cyan,
+        Color.magenta,
+        Color.green
     };
     private static int next = 1;
     private int counter = 0;
 
     public GameObject IngredientsCounter;
-    public GameObject Recipie;
+    public RecipeObject recipie;
 
 
     // Start is called before the first frame update
     void Start()
     {
-
+        recipie = GameObject.Find("RecipeData").GetComponent<RecipeObject>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
 
         //Debug.Log("collision with on trigger" + other.name);
-        if (other.gameObject == Spoon.gameObject && int.Parse(this.name)==next && counter<2)
+
+        if (other.gameObject == Spoon.gameObject && int.Parse(this.name)==next && counter<colors.Length)
         {
             Debug.Log(this.name + " collided with " + other.gameObject.name);
             this.gameObject.GetComponent<Outline>().OutlineColor = colors[counter];
             //counter = (counter==2) ? 0 : counter+1;
             counter++;
             next = (next==4) ? 1 : next+1;
+        } else if(counter== colors.Length)
+        {
+            Finish();
         }
+    }
+
+    private void Finish()
+    {
+        //step++
+        recipie.currentStep = 1;
+        
+        //reset for next stir event
     }
 
     private void ResetCounters()

@@ -37,6 +37,9 @@ public class RecipeObject : MonoBehaviour
     public GameObject BigSpoon;
     public GameObject SmallSpoon;
 
+    public GameObject dough;
+    public GameObject doughUp4Grabs;
+
 
     public Dictionary<string, int[]> GetIngredients()
     {
@@ -52,13 +55,22 @@ public class RecipeObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void CakeTransformation()
+    {
+        if (currentStep == 1)
+        {
+            dough.SetActive(false);
+            doughUp4Grabs.SetActive(true);
+        }
     }
 }
 

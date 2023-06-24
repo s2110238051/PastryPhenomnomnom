@@ -58,6 +58,7 @@ public class gestureController : MonoBehaviour
     }
     void SpawnPrefab(GameObject prefab)
     {
+        
         Instantiate(prefab, spawnTransform.position, spawnTransform.rotation);
     }
 
@@ -70,6 +71,7 @@ public class gestureController : MonoBehaviour
         { 
             if (gesturesActive[gesturesCombis[i, 0], 0] & gesturesActive[gesturesCombis[i, 1], 1])
             {
+                gestureThumbsUpR.gameObject.transform.GetChild(0).gameObject.GetComponent<AudioTrigger>().PlayAudio();
                 Instantiate(ingredients[i], spawnTransform.position, spawnTransform.rotation);
                 //return;
             }
