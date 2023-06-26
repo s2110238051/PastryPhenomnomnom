@@ -46,6 +46,7 @@ public class bowlAudio : MonoBehaviour
         {
             egg.DeleteShell();
         }
+        GameObject.FindGameObjectWithTag("bowl").GetComponent<Outline>().OutlineColor = new Color(255, 0, 0, 0);
     }
 
     private void OnTriggerEnter(Collider other)
