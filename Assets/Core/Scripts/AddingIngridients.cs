@@ -20,11 +20,16 @@ public class AddingIngridients : MonoBehaviour
         { "eggs", new int[] {2,0 } },
         { "sugar", new int[] {2,0 } },
         { "milk", new int[] {1,0 } },
+        { "water", new int[] {0,0 } },
+        { "strawberries", new int[] {0,0 } },
     };
+
+    public RecipeObject recipe;
 
     private void Start()
     {
         audioSauce = GetComponent<AudioSource>();
+        recipe = GameObject.Find("RecipeData").GetComponent<RecipeObject>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -32,6 +37,8 @@ public class AddingIngridients : MonoBehaviour
         //Debug.Log("collision with on trigger" + other.name);
         if (Ingridients.ContainsKey(other.gameObject.tag))
         {
+            if (recipe.currentStep == 1) recipe.SetStep(2); 
+
             Debug.Log("this ingredient has entered the chat: " + other.gameObject.tag);
             Ingridients[other.gameObject.tag][1]++;
 

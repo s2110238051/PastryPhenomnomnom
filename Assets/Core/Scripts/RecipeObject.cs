@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RecipeObject : MonoBehaviour
 {
@@ -18,6 +20,15 @@ public class RecipeObject : MonoBehaviour
     // umrühren
 
     public int currentStep = 0;
+    public TextMeshProUGUI stepTextObj;
+    public string[] stepTexts;
+
+    public void SetStep(int next)
+    {
+        currentStep = next;
+        stepTextObj.text = stepTexts[currentStep];
+    }
+
 
 
     // ingredient tag, [soll wert, ist wert]
@@ -40,6 +51,9 @@ public class RecipeObject : MonoBehaviour
     public GameObject dough;
     public GameObject doughUp4Grabs;
 
+    public GameObject formInOven;
+    public GameObject bakedCake;
+
 
     public Dictionary<string, int[]> GetIngredients()
     {
@@ -50,7 +64,6 @@ public class RecipeObject : MonoBehaviour
             default: return new Dictionary<string, int[]>();
         }
     }
-
 
     // Start is called before the first frame update
     void Start()
@@ -66,12 +79,29 @@ public class RecipeObject : MonoBehaviour
 
     public void CakeTransformation()
     {
-        if (currentStep == 1)
+        if (currentStep == 3)
         {
             dough.SetActive(false);
             doughUp4Grabs.SetActive(true);
+        } 
+        else if( currentStep == 6)
+        {
+            formInOven.SetActive(false);
+            bakedCake.SetActive(true);
         }
     }
+
+
+    public bool cakeInOven = false;
+    public bool ovenTurnedOn = false;
+    public OvenTimer ovenTimer;
+
+    // step
+    public void StartOvenTimer()
+    {
+        if(cakeInOven && ovenTurnedOn) { ovenTimer.timerIsRunning = true; SetStep(5);  }
+    }
+
 }
 
 

@@ -16,6 +16,8 @@ public class gestureController : MonoBehaviour
     public ActiveStateSelector gestureThumbsUpL;
     public ActiveStateSelector gestureScissorsR;
     public ActiveStateSelector gestureScissorsL;
+    public ActiveStateSelector gestureRockR;
+    public ActiveStateSelector gestureRockL;
 
     private bool[,] gesturesActive = new bool[7,2];
     private int[,] gesturesCombis = new int[,] { 
@@ -23,14 +25,21 @@ public class gestureController : MonoBehaviour
         { 1, 1},
         { 1, 0},
         { 0, 1},
+        { 2, 2},
+        { 1, 2},
     };
 
     public ActiveStateSelector[] gestureObjects; 
     public GameObject[] ingredients = new GameObject[6];
 
+    public RecipeObject recipe;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        recipe = GameObject.Find("RecipeData").GetComponent<RecipeObject>();
+
         gestureScissorsR.WhenSelected += () => SpawnIngredient(0, 0);
         gestureScissorsL.WhenSelected += () => SpawnIngredient(0, 1);
 
@@ -42,6 +51,12 @@ public class gestureController : MonoBehaviour
 
         gestureThumbsUpR.WhenUnselected += () => { gesturesActive[1, 0] = false; };
         gestureThumbsUpL.WhenUnselected += () => { gesturesActive[1, 1] = false; };
+
+        gestureRockR.WhenSelected += () => SpawnIngredient(2, 0);
+        gestureRockL.WhenSelected += () => SpawnIngredient(2, 1);
+
+        gestureRockR.WhenUnselected += () => { gesturesActive[2, 0] = false; };
+        gestureRockL.WhenUnselected += () => { gesturesActive[2, 1] = false; };
 
         //int counter = 0; //alle zwei
         //for (int key = 0; key < 2; key++)
@@ -67,13 +82,16 @@ public class gestureController : MonoBehaviour
         gesturesActive[gesture, handNr] = true;
 
 
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 6; i++)
         { 
             if (gesturesActive[gesturesCombis[i, 0], 0] & gesturesActive[gesturesCombis[i, 1], 1])
             {
                 gestureThumbsUpR.gameObject.transform.GetChild(0).gameObject.GetComponent<AudioTrigger>().PlayAudio();
                 Instantiate(ingredients[i], spawnTransform.position, spawnTransform.rotation);
-                //return;
+
+                if (recipe.currentStep == 0) recipe.SetStep(1);
+
+                return;
             }
         }
     }

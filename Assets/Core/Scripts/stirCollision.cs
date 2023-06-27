@@ -23,13 +23,13 @@ public class stirCollision : MonoBehaviour
     private int counter = 0;
 
     public GameObject IngredientsCounter;
-    public RecipeObject recipie;
+    public RecipeObject recipe;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        recipie = GameObject.Find("RecipeData").GetComponent<RecipeObject>();
+        recipe = GameObject.Find("RecipeData").GetComponent<RecipeObject>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -37,23 +37,29 @@ public class stirCollision : MonoBehaviour
 
         //Debug.Log("collision with on trigger" + other.name);
 
-        if (other.gameObject == Spoon.gameObject && int.Parse(this.name)==next && counter<colors.Length)
+        if (recipe.currentStep == 2)
         {
-            Debug.Log(this.name + " collided with " + other.gameObject.name);
-            this.gameObject.GetComponent<Outline>().OutlineColor = colors[counter];
-            //counter = (counter==2) ? 0 : counter+1;
-            counter++;
-            next = (next==4) ? 1 : next+1;
-        } else if(counter== colors.Length)
-        {
-            Finish();
+            if (other.gameObject == Spoon.gameObject && int.Parse(this.name) == next && counter < colors.Length)
+            {
+                Debug.Log(this.name + " collided with " + other.gameObject.name);
+                this.gameObject.GetComponent<Outline>().OutlineColor = colors[counter];
+                //counter = (counter==2) ? 0 : counter+1;
+                counter++;
+                next = (next == 4) ? 1 : next + 1;
+            }
+            else if (counter == colors.Length)
+            {
+                Finish();
+            }
         }
+
+        
     }
 
     private void Finish()
     {
         //step++
-        recipie.currentStep = 1;
+        recipe.SetStep(3);
         
         //reset for next stir event
     }
