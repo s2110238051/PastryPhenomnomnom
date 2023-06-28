@@ -13,38 +13,37 @@ public class AddingIngridients : MonoBehaviour
     public GameObject dough;
     public int counter = 0;
     private AudioSource audioSauce;
+    private bool setToppingMix;
+
+    public GameObject toppingObj;
 
     // ingredient tag, [soll wert, ist wert]
-    private Dictionary<string, int[]> Ingridients = new Dictionary<string, int[]>() {
-        { "flour", new int[] {3,0 } },
-        { "eggs", new int[] {2,0 } },
-        { "sugar", new int[] {2,0 } },
-        { "milk", new int[] {1,0 } },
-        { "water", new int[] {0,0 } },
-        { "strawberries", new int[] {0,0 } },
-    };
 
     public RecipeObject recipe;
 
     private void Start()
     {
         audioSauce = GetComponent<AudioSource>();
+
         recipe = GameObject.Find("RecipeData").GetComponent<RecipeObject>();
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log("collision with on trigger" + other.name);
-        if (Ingridients.ContainsKey(other.gameObject.tag))
+        if (recipe.GetIngredients().ContainsKey(other.gameObject.tag))
         {
             if (recipe.currentStep == 1) recipe.SetStep(2); 
+            if (recipe.currentStep == 6) recipe.SetStep(7);
 
             Debug.Log("this ingredient has entered the chat: " + other.gameObject.tag);
-            Ingridients[other.gameObject.tag][1]++;
+            recipe.GetIngredients()[other.gameObject.tag][1]++;
 
-            if (Ingridients[other.gameObject.tag][1] <= Ingridients[other.gameObject.tag][0])
+            if (recipe.GetIngredients()[other.gameObject.tag][1] <= recipe.GetIngredients()[other.gameObject.tag][0])
             {
                 particleSystem.Play();
+                //audioSauce2.Play();
             }
             else
             {
@@ -56,11 +55,24 @@ public class AddingIngridients : MonoBehaviour
             Destroy(other.gameObject, 1);
             AddDough();
         }
+        else if (other.gameObject.CompareTag("smolSpoon"))
+        {
+            toppingObj.SetActive(true);
+            dough.SetActive(false);
+            recipe.SetStep(9);
+
+        }
         //particleSystem.SetActive(true);
     }
 
     private void AddDough()
     {
+        if(recipe.currentStep >= 3 & !setToppingMix)
+        {
+            dough = recipe.toppingMix;
+            setToppingMix = true;
+        }
+
         if (!dough.activeSelf)
         {
             dough.SetActive(true);
@@ -73,7 +85,6 @@ public class AddingIngridients : MonoBehaviour
             }
 
                 dough.transform.localPosition += new Vector3(0, 0.1f, 0);
-            
         }
         counter++;
     }
@@ -81,9 +92,9 @@ public class AddingIngridients : MonoBehaviour
     public bool ValidatePatter()
     {
         bool result = true;
-        foreach (string key in Ingridients.Keys)
+        foreach (string key in recipe.GetIngredients().Keys)
         {
-            if (Ingridients[key][1] != Ingridients[key][0])
+            if (recipe.GetIngredients()[key][1] != recipe.GetIngredients()[key][0])
                 result = false;
         }
 

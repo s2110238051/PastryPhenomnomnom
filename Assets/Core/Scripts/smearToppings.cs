@@ -1,30 +1,21 @@
-using Oculus.Interaction;
-using Oculus.Interaction.HandGrab;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using UnityEngine;
-using static UnityEngine.ParticleSystem;
 
-public class stirCollision : MonoBehaviour
+public class smearToppings : MonoBehaviour
 {
     public Collider Spoon;
-
-
     protected Color[] colors =
     {
         Color.yellow,
         Color.blue,
-        Color.cyan,
         Color.magenta,
         Color.green
     };
     protected static int next = 1;
     protected int counter = 0;
 
-    public GameObject IngredientsCounter;
     public RecipeObject recipe;
-
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +28,7 @@ public class stirCollision : MonoBehaviour
 
         //Debug.Log("collision with on trigger" + other.name);
 
-        if (recipe.currentStep == 2)
+        if (recipe.currentStep == 9)
         {
             if (other.gameObject == Spoon.gameObject && int.Parse(this.name) == next && counter < colors.Length)
             {
@@ -47,7 +38,7 @@ public class stirCollision : MonoBehaviour
                 counter++;
                 next = (next == 4) ? 1 : next + 1;
             }
-            else if (int.Parse(this.name) == 4 && counter == colors.Length)
+            else if (int.Parse(this.name)==4 && counter == colors.Length)
             {
                 Finish();
             }
@@ -57,7 +48,8 @@ public class stirCollision : MonoBehaviour
     protected void Finish()
     {
         //step++
-        recipe.SetStep(3);
+        recipe.SetStep(10);
+        recipe.CakeTransformation();
         //reset for next stir event
     }
 }

@@ -6,12 +6,12 @@ using System.Linq.Expressions;
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
 
-public class stirCollision : MonoBehaviour
+public class stirCollision1 : MonoBehaviour
 {
     public Collider Spoon;
 
 
-    protected Color[] colors =
+    private Color[] colors =
     {
         Color.yellow,
         Color.blue,
@@ -19,8 +19,8 @@ public class stirCollision : MonoBehaviour
         Color.magenta,
         Color.green
     };
-    protected static int next = 1;
-    protected int counter = 0;
+    private static int next = 1;
+    private int counter = 0;
 
     public GameObject IngredientsCounter;
     public RecipeObject recipe;
@@ -32,12 +32,12 @@ public class stirCollision : MonoBehaviour
         recipe = GameObject.Find("RecipeData").GetComponent<RecipeObject>();
     }
 
-    protected void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
 
         //Debug.Log("collision with on trigger" + other.name);
 
-        if (recipe.currentStep == 2)
+        if (recipe.currentStep > 3)
         {
             if (other.gameObject == Spoon.gameObject && int.Parse(this.name) == next && counter < colors.Length)
             {
@@ -54,10 +54,10 @@ public class stirCollision : MonoBehaviour
         }
     }
 
-    protected void Finish()
+    private void Finish()
     {
         //step++
-        recipe.SetStep(3);
+        recipe.SetStep(8);
         //reset for next stir event
     }
 }
