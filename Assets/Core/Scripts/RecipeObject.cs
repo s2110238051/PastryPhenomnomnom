@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class RecipeObject : MonoBehaviour
@@ -47,7 +48,7 @@ public class RecipeObject : MonoBehaviour
         { "milk", new int[] {0,0 } },
         { "water", new int[] {1,0 } },
         { "sugar", new int[] {4,0 } },
-        { "strawberries", new int[] {6,0 } }
+        { "strawberries", new int[] {4,0 } }
     };
 
     public GameObject BigSpoon;
@@ -62,6 +63,9 @@ public class RecipeObject : MonoBehaviour
     public GameObject formInOven;
     public GameObject bakedCake;
     public GameObject finishedCake;
+    public ParticleSystem ParticleSystemFinish;
+
+    public bool cakeBurned = false;
 
 
     public Dictionary<string, int[]> GetIngredients()
@@ -104,6 +108,8 @@ public class RecipeObject : MonoBehaviour
             finishedCake.transform.position = bakedCake.transform.position;
             bakedCake.SetActive(false);
             finishedCake.SetActive(true);
+            ParticleSystemFinish.Play();
+            CalcScore();
 
         }
     }
@@ -117,6 +123,53 @@ public class RecipeObject : MonoBehaviour
     public void StartOvenTimer()
     {
         if(cakeInOven && ovenTurnedOn) { ovenTimer.timerIsRunning = true; SetStep(5);  }
+    }
+
+    public bool ValidatePatter(Dictionary<string, int[]> ingridis)
+    {
+        foreach (string key in ingridis.Keys)
+        {
+            if (ingridis[key][1] != ingridis[key][0])
+                return false;
+        }
+
+        return true;
+    }
+
+    public GameObject fertigUI;
+    public GameObject star1;
+    public GameObject star2; 
+    public GameObject star3;
+    public TextMeshProUGUI scorText;
+
+    public void CalcScore()
+    {
+        int score = 0;
+
+        if (ValidatePatter(doughIngridients)) score++;
+        if (ValidatePatter(frostingIngridients)) score++;
+        if (!cakeBurned) score++;
+
+        fertigUI.SetActive(true);
+
+        switch (score)
+        {
+            case 1:
+                star1.SetActive(true);
+                scorText.text = "1/3";
+                break;
+            case 2:
+                star2.SetActive(true);
+                scorText.text = "3/3";
+                break;
+            case 3:
+                star1.SetActive(true);
+                scorText.text = "3/3";
+                break;
+            default:
+                scorText.text = "0/3";
+                break;
+        }
     }
 
 }

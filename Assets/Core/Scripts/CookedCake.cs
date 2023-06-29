@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 
-public class OvenTimer : MonoBehaviour
+public class CookedCake : MonoBehaviour
 {
-    public float timeRemaining = 10;
+    public float timeRemaining = 5;
     public bool timerIsRunning = false;
     public TMPro.TextMeshPro timeText;
-
-    public CookedCake cookedCake;
 
     public RecipeObject recipe;
     void Start()
@@ -23,17 +22,15 @@ public class OvenTimer : MonoBehaviour
             if (timeRemaining > 0)
             {
                 timeRemaining -= Time.deltaTime;
-                DisplayTime(timeRemaining);
+                //DisplayTime(timeRemaining);
             }
             else
             {
-                Debug.Log("Time has run out!");
+                Debug.Log("cake over!");
                 timeRemaining = 0;
                 timerIsRunning = false;
-
-                recipe.SetStep(6);
-                recipe.CakeTransformation();
-                cookedCake.timerIsRunning = true;
+                recipe.bakedCake.transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().material.color = new Color(0.3f, 0.2f, 0);
+                recipe.cakeBurned = true;
             }
         }
     }

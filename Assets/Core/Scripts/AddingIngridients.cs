@@ -55,8 +55,9 @@ public class AddingIngridients : MonoBehaviour
             Destroy(other.gameObject, 1);
             AddDough();
         }
-        else if (other.gameObject.CompareTag("smolSpoon"))
+        else if (other.gameObject.CompareTag("spoon"))
         {
+            if(setToppingMix)
             toppingObj.SetActive(true);
             dough.SetActive(false);
             recipe.SetStep(9);
@@ -89,15 +90,5 @@ public class AddingIngridients : MonoBehaviour
         counter++;
     }
 
-    public bool ValidatePatter()
-    {
-        bool result = true;
-        foreach (string key in recipe.GetIngredients().Keys)
-        {
-            if (recipe.GetIngredients()[key][1] != recipe.GetIngredients()[key][0])
-                result = false;
-        }
-
-        return result;
-    }
+    
 }

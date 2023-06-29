@@ -9,7 +9,6 @@ public class smearToppings : MonoBehaviour
     {
         Color.yellow,
         Color.blue,
-        Color.magenta,
         Color.green
     };
     protected static int next = 1;
@@ -38,7 +37,8 @@ public class smearToppings : MonoBehaviour
                 counter++;
                 next = (next == 4) ? 1 : next + 1;
             }
-            else if (int.Parse(this.name)==4 && counter == colors.Length)
+            
+            if (int.Parse(this.name)==4 && counter == colors.Length)
             {
                 Finish();
             }

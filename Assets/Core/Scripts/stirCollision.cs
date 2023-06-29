@@ -47,7 +47,8 @@ public class stirCollision : MonoBehaviour
                 counter++;
                 next = (next == 4) ? 1 : next + 1;
             }
-            else if (int.Parse(this.name) == 4 && counter == colors.Length)
+            
+            if (int.Parse(this.name) == 4 && counter == colors.Length)
             {
                 Finish();
             }
