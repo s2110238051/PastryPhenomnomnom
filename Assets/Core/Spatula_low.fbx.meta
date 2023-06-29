@@ -1,16 +1,11 @@
 fileFormatVersion: 2
-guid: 81ebd36be1022264e9755f50a3feecd0
+guid: 4c6f4120c9851b24e95899178034dbaa
 ModelImporter:
   serializedVersion: 22103
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Strawberry_M
-    second: {fileID: 2100000, guid: eafbe066708528443bac8aaaf7e5cbf4, type: 2}
+  externalObjects: {}
   materials:
-    materialImportMode: 2
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -37,7 +32,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1

@@ -35,14 +35,19 @@ public class RecipeObject : MonoBehaviour
     private Dictionary<string, int[]> doughIngridients = new Dictionary<string, int[]>() {
         { "flour", new int[] {3,0 } },
         { "eggs", new int[] {2,0 } },
-        { "sugar", new int[] {2,0 } },
-        { "milk", new int[] {1,0 } },
+        { "sugar", new int[] {4,0 } },
+        { "milk", new int[] {2,0 } },
+        { "water", new int[] {0,0 } },
+        { "strawberries", new int[] {0,0 } }
     };
 
     private Dictionary<string, int[]> frostingIngridients = new Dictionary<string, int[]>() {
-        { "water", new int[] {3,0 } },
-        { "sugar", new int[] {2,0 } },
-        { "strawberries", new int[] {1,0 } }
+        { "flour", new int[] {0,0 } },
+        { "eggs", new int[] {0,0 } },
+        { "milk", new int[] {0,0 } },
+        { "water", new int[] {1,0 } },
+        { "sugar", new int[] {4,0 } },
+        { "strawberries", new int[] {6,0 } }
     };
 
     public GameObject BigSpoon;
@@ -51,19 +56,25 @@ public class RecipeObject : MonoBehaviour
     public GameObject dough;
     public GameObject doughUp4Grabs;
 
+    public GameObject toppingMix;
+
+
     public GameObject formInOven;
     public GameObject bakedCake;
+    public GameObject finishedCake;
 
 
     public Dictionary<string, int[]> GetIngredients()
     {
         switch(currentStep)
         {
-            case 0: return doughIngridients;
-            case 1: return frostingIngridients;
-            default: return new Dictionary<string, int[]>();
+            case <=2: return doughIngridients;
+            case >=3: return frostingIngridients;
+            //default: return new Dictionary<string, int[]>();
         }
     }
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -88,6 +99,12 @@ public class RecipeObject : MonoBehaviour
         {
             formInOven.SetActive(false);
             bakedCake.SetActive(true);
+        } else if(currentStep == 10)
+        {
+            finishedCake.transform.position = bakedCake.transform.position;
+            bakedCake.SetActive(false);
+            finishedCake.SetActive(true);
+
         }
     }
 
