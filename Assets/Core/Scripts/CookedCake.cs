@@ -33,6 +33,11 @@ public class CookedCake : MonoBehaviour
                 recipe.cakeBurned = true;
             }
         }
+        else if (timerIsRunning && !recipe.ovenTurnedOn)
+        {
+            GameObject.Find("ovenPress").SetActive(false);
+            enabled = false;
+        }
     }
     void DisplayTime(float timeToDisplay)
     {
