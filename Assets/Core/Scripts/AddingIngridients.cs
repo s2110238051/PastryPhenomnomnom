@@ -52,7 +52,7 @@ public class AddingIngridients : MonoBehaviour
                 other.gameObject.GetComponent<Renderer>().material.color = Color.red;
             }
 
-            Destroy(other.gameObject, 1);
+            Destroy(other.gameObject, 0.3f);
             AddDough();
         }
         else if (other.gameObject.CompareTag("spoon"))

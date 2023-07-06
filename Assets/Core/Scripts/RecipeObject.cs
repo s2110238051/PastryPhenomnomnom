@@ -36,7 +36,7 @@ public class RecipeObject : MonoBehaviour
     private Dictionary<string, int[]> doughIngridients = new Dictionary<string, int[]>() {
         { "flour", new int[] {3,0 } },
         { "eggs", new int[] {2,0 } },
-        { "sugar", new int[] {4,0 } },
+        { "sugar", new int[] {2,0 } },
         { "milk", new int[] {2,0 } },
         { "water", new int[] {0,0 } },
         { "strawberries", new int[] {0,0 } }
@@ -47,7 +47,7 @@ public class RecipeObject : MonoBehaviour
         { "eggs", new int[] {0,0 } },
         { "milk", new int[] {0,0 } },
         { "water", new int[] {1,0 } },
-        { "sugar", new int[] {4,0 } },
+        { "sugar", new int[] {2,0 } },
         { "strawberries", new int[] {4,0 } }
     };
 
@@ -160,10 +160,10 @@ public class RecipeObject : MonoBehaviour
                 break;
             case 2:
                 star2.SetActive(true);
-                scorText.text = "3/3";
+                scorText.text = "2/3";
                 break;
             case 3:
-                star1.SetActive(true);
+                star3.SetActive(true);
                 scorText.text = "3/3";
                 break;
             default:
